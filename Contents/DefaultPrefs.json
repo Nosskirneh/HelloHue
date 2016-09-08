@@ -66,14 +66,14 @@
           "Nothing",
           "Brightness",
           "Turn Off (Black)",
-          "Clear",
+          "Turn On (Clear)",
           "Preset 1",
           "Preset 2",
           "Preset 3",
           "Preset 4",
           "Preset 5"
         ],
-    "default": "Clear"
+    "default": "Turn On (Clear)"
     },
     {
         "id": "HYPERION_ACTION_PAUSED",
@@ -84,7 +84,7 @@
           "Nothing",
           "Brightness",
           "Turn Off (Black)",
-          "Clear",
+          "Turn On (Clear)",
           "Preset 1",
           "Preset 2",
           "Preset 3",
@@ -102,7 +102,7 @@
           "Nothing",
           "Brightness",
           "Turn Off (Black)",
-          "Clear",
+          "Turn On (Clear)",
           "Preset 1",
           "Preset 2",
           "Preset 3",
@@ -170,14 +170,14 @@
           "Nothing",
           "Brightness",
           "Turn Off (Black)",
-          "Clear",
+          "Turn On (Clear)",
           "Preset 1",
           "Preset 2",
           "Preset 3",
           "Preset 4",
           "Preset 5"
         ],
-    "default": "Clear"
+    "default": "Turn On (Clear)"
     },
     {
         "id": "PLEX_OFF",
@@ -187,7 +187,7 @@
           "Nothing",
           "Brightness",
           "Turn Off (Black)",
-          "Clear",
+          "Turn On (Clear)",
           "Preset 1",
           "Preset 2",
           "Preset 3",
