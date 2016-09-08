@@ -1,5 +1,11 @@
 [
     {
+        "id": "HYPERION_SWITCH",
+        "label": "Activate HelloHyperion",
+        "type": "bool",
+        "default": "true"
+    },
+    {
         "id": "PLEX_USERNAME",
         "label": "Plex.TV login",
         "type": "text",
@@ -20,13 +26,19 @@
         "default": "127.0.0.1:32400"
     },
     {
-        "id": "HUE_BRIDGE_IP",
-        "label": "Philips Hue Bridge Address",
+        "id": "HYPERION_ADDRESS",
+        "label": "HyperionWeb Address",
         "type": "text",
-        "default": "192.168.0.44"
+        "default": "127.0.0.1:1234"
     },
     {
-        "id": "HUE_CITY",
+        "id": "HYPERION_ADDRESS_SSL",
+        "label": "HTTPS",
+        "type": "bool",
+        "default": "false"
+    },
+    {
+        "id": "HYPERION_CITY",
         "label": "Nearest city from your location (to calculate sunrise/sunset):",
         "type": "enum",
         "values": [
@@ -35,220 +47,44 @@
     "default": "Paris"
     },
     {
-        "id": "HUE_PRESET_1_HEX",
-        "label": "Preset 1, color (hex): #",
-        "type": "text",
-        "default": "FF0000"
-    },
-    {
-        "id": "HUE_PRESET_1_BRI",
-        "label": "Preset 1, brightness:",
-        "type": "enum",
-        "values": [
-          "0",
-          "20",
-          "40",
-          "60",
-          "80",
-          "100",
-          "120",
-          "140",
-          "160",
-          "180",
-          "200",
-          "220",
-          "240",
-          "255"
-        ],
-    "default": "200"
-    },
-    {
-        "id": "HUE_PRESET_2_HEX",
-        "label": "Preset 2, color (hex): #",
-        "type": "text",
-        "default": "FF0000"
-    },
-    {
-        "id": "HUE_PRESET_2_BRI",
-        "label": "Preset 2, brightness:",
-        "type": "enum",
-        "values": [
-          "0",
-          "20",
-          "40",
-          "60",
-          "80",
-          "100",
-          "120",
-          "140",
-          "160",
-          "180",
-          "200",
-          "220",
-          "240",
-          "255"
-        ],
-    "default": "200"
-    },
-    {
-        "id": "HUE_PRESET_3_HEX",
-        "label": "Preset 3, color (hex): #",
-        "type": "text",
-        "default": "FF0000"
-    },
-    {
-        "id": "HUE_PRESET_3_BRI",
-        "label": "Preset 3, brightness:",
-        "type": "enum",
-        "values": [
-          "0",
-          "20",
-          "40",
-          "60",
-          "80",
-          "100",
-          "120",
-          "140",
-          "160",
-          "180",
-          "200",
-          "220",
-          "240",
-          "255"
-        ],
-    "default": "200"
-    },
-    {
-        "id": "HUE_PRESET_4_HEX",
-        "label": "Preset 4, color (hex): #",
-        "type": "text",
-        "default": "FF0000"
-    },
-    {
-        "id": "HUE_PRESET_4_BRI",
-        "label": "Preset 4, brightness:",
-        "type": "enum",
-        "values": [
-          "0",
-          "20",
-          "40",
-          "60",
-          "80",
-          "100",
-          "120",
-          "140",
-          "160",
-          "180",
-          "200",
-          "220",
-          "240",
-          "255"
-        ],
-    "default": "200"
-    },
-    {
-        "id": "HUE_PRESET_5_HEX",
-        "label": "Preset 5, color (hex): #",
-        "type": "text",
-        "default": "FF0000"
-    },
-    {
-        "id": "HUE_PRESET_5_BRI",
-        "label": "Preset 5, brightness:",
-        "type": "enum",
-        "values": [
-          "0",
-          "20",
-          "40",
-          "60",
-          "80",
-          "100",
-          "120",
-          "140",
-          "160",
-          "180",
-          "200",
-          "220",
-          "240",
-          "255"
-        ],
-    "default": "200"
-    },
-    {
-        "id": "HUE_ROOM_1",
-        "label": "Activate HelloHue in room 1",
-        "type": "bool",
-        "default": "true"
-    },
-    {
-        "id": "PLEX_CLIENT_1",
-        "label": "Name of the plex client in room 1 (one value, case sensitive)",
+        "id": "PLEX_CLIENT",
+        "label": "Name of the plex client (one value, case sensitive)",
         "type": "text",
         "default": "client1"
     },
     {
-        "id": "PLEX_AUTHORIZED_USERS_1",
+        "id": "PLEX_AUTHORIZED_USERS",
         "label": "Names of the users able to trigger in room 1 (comma separated, case sensitive)",
         "type": "text",
         "default": "username1, username2"
     },
     {
-        "id": "HUE_LIGHTS_1",
-        "label": "Name of the lights to trigger in room 1 (comma separated, case sensitive)",
-        "type": "text",
-        "default": "Light 1, Light 2"
-    },
-    {
-        "id": "HUE_GROUPS_1",
-        "label": "Name of the groups to trigger in room 1 (comma separated, case sensitive)",
-        "type": "text",
-        "default": "Group 1, Group 2"
-    },
-    {
-        "id": "HUE_ACTION_PLAYING_1",
-        "label": "When a media is playing in room 1:",
+        "id": "HYPERION_ACTION_PLAYING",
+        "label": "When a media is playing:",
         "type": "enum",
         "values": [
           "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
+          "Brightness",
+          "Turn Off (Black)",
+          "Clear",
           "Preset 1",
           "Preset 2",
           "Preset 3",
           "Preset 4",
           "Preset 5"
         ],
-    "default": "Turn Off"
+    "default": "Clear"
     },
     {
-        "id": "HUE_ACTION_PAUSED_1",
-        "label": "When a media is paused in room 1:",
+        "id": "HYPERION_ACTION_PAUSED",
+        "label": "When a media is paused:",
         "type": "enum",
         "values": [
           "Reset",
           "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
-          "Preset 1",
-          "Preset 2",
-          "Preset 3",
-          "Preset 4",
-          "Preset 5"
-        ],
-    "default": "Dim"
-    },
-    {
-        "id": "HUE_ACTION_STOPPED_1",
-        "label": "When a media is stopped in room 1:",
-        "type": "enum",
-        "values": [
-          "Reset",
-          "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
+          "Brightness",
+          "Turn Off (Black)",
+          "Clear",
           "Preset 1",
           "Preset 2",
           "Preset 3",
@@ -258,126 +94,57 @@
     "default": "Nothing"
     },
     {
-        "id": "HUE_DIM_1",
-        "label": "Choose dim value in room 1:",
+        "id": "HYPERION_ACTION_STOPPED",
+        "label": "When a media is stopped:",
+        "type": "enum",
+        "values": [
+          "Reset",
+          "Nothing",
+          "Brightness",
+          "Turn Off (Black)",
+          "Clear",
+          "Preset 1",
+          "Preset 2",
+          "Preset 3",
+          "Preset 4",
+          "Preset 5"
+        ],
+    "default": "Turn Off (Black)"
+    },
+    {
+        "id": "HYPERION_BRI",
+        "label": "Change value gain",
         "type": "enum",
         "values": [
           "0",
+          "10",
           "20",
+          "30",
           "40",
+          "50",
           "60",
+          "70",
           "80",
-          "100",
-          "120",
-          "140",
-          "160",
-          "180",
-          "200",
-          "220",
-          "240",
-          "255"
+          "90",
+          "100"
         ],
     "default": "20"
     },
     {
-        "id": "HUE_TRANSITION_START_1",
-        "label": "Transition time when playback starts in room 1",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_TRANSITION_PAUSED_1",
-        "label": "Transition time when playback pauses in room 1",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_TRANSITION_RESUMED_1",
-        "label": "Transition time when playback resumes in room 1",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_TRANSITION_STOPPED_1",
-        "label": "Transition time when playback stops in room 1",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_RANDOMIZE_1",
-        "label": "Randomize hue and saturation on Dim/Turn On in room 1",
-        "type": "bool",
-        "default": "true"
-    },
-    {
-        "id": "HUE_DARK_1",
-        "label": "Only trigger lights if it's dark outside in room 1",
+        "id": "HYPERION_RANDOMIZE",
+        "label": "Randomize color and saturation on Value Gain/Turn On",
         "type": "bool",
         "default": "false"
     },
     {
-        "id": "PLEX_DURATION_1",
-        "label": "Only trigger lights in room 1 if currently playing media duration is greater than:",
+        "id": "HYPERION_DARK",
+        "label": "Only trigger lights if it's dark outside",
+        "type": "bool",
+        "default": "false"
+    },
+    {
+        "id": "PLEX_DURATION",
+        "label": "Only trigger if currently playing media duration is greater than:",
         "type": "enum",
         "values": [
           "Disabled",
@@ -396,1298 +163,163 @@
     "default": "Disabled"
     },
     {
-        "id": "HUE_ONLY_ON_1",
-        "label": "Only trigger lights that are on when the movie starts in room 1",
-        "type": "bool",
-        "default": "false"
-    },
-    {
-        "id": "PLEX_ON_1",
-        "label": "When the client is turned ON in room 1:",
+        "id": "PLEX_ON",
+        "label": "When the client is turned ON:",
         "type": "enum",
         "values": [
           "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
+          "Brightness",
+          "Turn Off (Black)",
+          "Clear",
           "Preset 1",
           "Preset 2",
           "Preset 3",
           "Preset 4",
           "Preset 5"
         ],
-    "default": "Nothing"
+    "default": "Clear"
     },
     {
-        "id": "PLEX_TRANSITION_ON_1",
-        "label": "Transition time the client is turned ON in room 1:",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "PLEX_OFF_1",
-        "label": "When the client is turned OFF in room 1:",
+        "id": "PLEX_OFF",
+        "label": "When the client is turned OFF:",
         "type": "enum",
         "values": [
           "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
+          "Brightness",
+          "Turn Off (Black)",
+          "Clear",
           "Preset 1",
           "Preset 2",
           "Preset 3",
           "Preset 4",
           "Preset 5"
         ],
-    "default": "Nothing"
+    "default": "Turn Off (Black)"
     },
     {
-        "id": "PLEX_TRANSITION_OFF_1",
-        "label": "Transition time the client is turned OFF in room 1:",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_ROOM_2",
-        "label": "Activate HelloHue in room 2",
-        "type": "bool",
-        "default": "false"
-    },
-    {
-        "id": "PLEX_CLIENT_2",
-        "label": "Name of the plex client in room 2 (one value, case sensitive)",
+        "id": "HYPERION_PRESET_1_HEX",
+        "label": "Preset 1, color (hex): #",
         "type": "text",
-        "default": "client2"
+        "default": "FF0000"
     },
     {
-        "id": "PLEX_AUTHORIZED_USERS_2",
-        "label": "Names of the users able to trigger in room 2 (comma separated, case sensitive)",
-        "type": "text",
-        "default": "username1, username2"
-    },
-    {
-        "id": "HUE_LIGHTS_2",
-        "label": "Name of the lights to trigger in room 2 (comma separated, case sensitive)",
-        "type": "text",
-        "default": "Light 1, Light 2"
-    },
-    {
-        "id": "HUE_GROUPS_2",
-        "label": "Name of the groups to trigger in room 2 (comma separated, case sensitive)",
-        "type": "text",
-        "default": "Group 1, Group 2"
-    },
-    {
-        "id": "HUE_ACTION_PLAYING_2",
-        "label": "When a media is playing in room 2:",
-        "type": "enum",
-        "values": [
-          "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
-          "Preset 1",
-          "Preset 2",
-          "Preset 3",
-          "Preset 4",
-          "Preset 5"
-        ],
-    "default": "Turn Off"
-    },
-    {
-        "id": "HUE_ACTION_PAUSED_2",
-        "label": "When a media is paused in room 2:",
-        "type": "enum",
-        "values": [
-          "Reset",
-          "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
-          "Preset 1",
-          "Preset 2",
-          "Preset 3",
-          "Preset 4",
-          "Preset 5"
-        ],
-    "default": "Dim"
-    },
-    {
-        "id": "HUE_ACTION_STOPPED_2",
-        "label": "When a media is stopped in room 2:",
-        "type": "enum",
-        "values": [
-          "Reset",
-          "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
-          "Preset 1",
-          "Preset 2",
-          "Preset 3",
-          "Preset 4",
-          "Preset 5"
-        ],
-    "default": "Nothing"
-    },
-    {
-        "id": "HUE_DIM_2",
-        "label": "Choose dim value in room 2:",
+        "id": "HYPERION_PRESET_1_BRI",
+        "label": "Preset 1, brightness:",
         "type": "enum",
         "values": [
           "0",
+          "10",
           "20",
+          "30",
           "40",
+          "50",
           "60",
+          "70",
           "80",
-          "100",
-          "120",
-          "140",
-          "160",
-          "180",
-          "200",
-          "220",
-          "240",
-          "255"
+          "90",
+          "100"
         ],
-    "default": "20"
+    "default": "100"
     },
     {
-        "id": "HUE_TRANSITION_START_2",
-        "label": "Transition time when playback starts in room 2",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_TRANSITION_PAUSED_2",
-        "label": "Transition time when playback pauses in room 2",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_TRANSITION_RESUMED_2",
-        "label": "Transition time when playback resumes in room 2",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_TRANSITION_STOPPED_2",
-        "label": "Transition time when playback stops in room 2",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_RANDOMIZE_2",
-        "label": "Randomize hue and saturation on Dim/Turn On in room 2",
-        "type": "bool",
-        "default": "true"
-    },
-    {
-        "id": "HUE_DARK_2",
-        "label": "Only trigger lights if it's dark outside in room 2",
-        "type": "bool",
-        "default": "false"
-    },
-    {
-        "id": "PLEX_DURATION_2",
-        "label": "Only trigger lights in room 2 if currently playing media duration is greater than:",
-        "type": "enum",
-        "values": [
-          "Disabled",
-          "1 minute",
-          "5 minutes",
-          "15 minutes",
-          "25 minutes",
-          "35 minutes",
-          "45 minutes",
-          "55 minutes",
-          "1 hour",
-          "1 hour and 20 minutes",
-          "1 hour and 40 minutes",
-          "2 hours"
-        ],
-    "default": "Disabled"
-    },
-    {
-        "id": "HUE_ONLY_ON_2",
-        "label": "Only trigger lights that are on when the movie starts in room 2",
-        "type": "bool",
-        "default": "false"
-    },
-    {
-        "id": "PLEX_ON_2",
-        "label": "When the client is turned ON in room 2:",
-        "type": "enum",
-        "values": [
-          "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
-          "Preset 1",
-          "Preset 2",
-          "Preset 3",
-          "Preset 4",
-          "Preset 5"
-        ],
-    "default": "Nothing"
-    },
-    {
-        "id": "PLEX_TRANSITION_ON_2",
-        "label": "Transition time the client is turned ON in room 2:",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "PLEX_OFF_2",
-        "label": "When the client is turned OFF in room 2:",
-        "type": "enum",
-        "values": [
-          "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
-          "Preset 1",
-          "Preset 2",
-          "Preset 3",
-          "Preset 4",
-          "Preset 5"
-        ],
-    "default": "Nothing"
-    },
-    {
-        "id": "PLEX_TRANSITION_OFF_2",
-        "label": "Transition time the client is turned OFF in room 2:",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_ROOM_3",
-        "label": "Activate HelloHue in room 3",
-        "type": "bool",
-        "default": "false"
-    },
-    {
-        "id": "PLEX_CLIENT_3",
-        "label": "Name of the plex client in room 3 (one value, case sensitive)",
+        "id": "HYPERION_PRESET_2_HEX",
+        "label": "Preset 2, color (hex): #",
         "type": "text",
-        "default": "client3"
+        "default": "FF0000"
     },
     {
-        "id": "PLEX_AUTHORIZED_USERS_3",
-        "label": "Names of the users able to trigger in room 3 (comma separated, case sensitive)",
-        "type": "text",
-        "default": "username1, username2"
-    },
-    {
-        "id": "HUE_LIGHTS_3",
-        "label": "Name of the lights to trigger in room 3 (comma separated, case sensitive)",
-        "type": "text",
-        "default": "Light 1, Light 2"
-    },
-    {
-        "id": "HUE_GROUPS_3",
-        "label": "Name of the groups to trigger in room 3 (comma separated, case sensitive)",
-        "type": "text",
-        "default": "Group 1, Group 2"
-    },
-    {
-        "id": "HUE_ACTION_PLAYING_3",
-        "label": "When a media is playing in room 3:",
-        "type": "enum",
-        "values": [
-          "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
-          "Preset 1",
-          "Preset 2",
-          "Preset 3",
-          "Preset 4",
-          "Preset 5"
-        ],
-    "default": "Turn Off"
-    },
-    {
-        "id": "HUE_ACTION_PAUSED_3",
-        "label": "When a media is paused in room 3:",
-        "type": "enum",
-        "values": [
-          "Reset",
-          "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
-          "Preset 1",
-          "Preset 2",
-          "Preset 3",
-          "Preset 4",
-          "Preset 5"
-        ],
-    "default": "Dim"
-    },
-    {
-        "id": "HUE_ACTION_STOPPED_3",
-        "label": "When a media is stopped in room 3:",
-        "type": "enum",
-        "values": [
-          "Reset",
-          "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
-          "Preset 1",
-          "Preset 2",
-          "Preset 3",
-          "Preset 4",
-          "Preset 5"
-        ],
-    "default": "Nothing"
-    },
-    {
-        "id": "HUE_DIM_3",
-        "label": "Choose dim value in room 3:",
+        "id": "HYPERION_PRESET_2_BRI",
+        "label": "Preset 2, brightness:",
         "type": "enum",
         "values": [
           "0",
+          "10",
           "20",
+          "30",
           "40",
+          "50",
           "60",
+          "70",
           "80",
-          "100",
-          "120",
-          "140",
-          "160",
-          "180",
-          "200",
-          "220",
-          "240",
-          "255"
+          "90",
+          "100"
         ],
-    "default": "20"
+    "default": "100"
     },
     {
-        "id": "HUE_TRANSITION_START_3",
-        "label": "Transition time when playback starts in room 3",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_TRANSITION_PAUSED_3",
-        "label": "Transition time when playback pauses in room 3",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_TRANSITION_RESUMED_3",
-        "label": "Transition time when playback resumes in room 3",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_TRANSITION_STOPPED_3",
-        "label": "Transition time when playback stops in room 3",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_RANDOMIZE_3",
-        "label": "Randomize hue and saturation on Dim/Turn On in room 3",
-        "type": "bool",
-        "default": "true"
-    },
-    {
-        "id": "HUE_DARK_3",
-        "label": "Only trigger lights if it's dark outside in room 3",
-        "type": "bool",
-        "default": "false"
-    },
-    {
-        "id": "PLEX_DURATION_3",
-        "label": "Only trigger lights in room 3 if currently playing media duration is greater than:",
-        "type": "enum",
-        "values": [
-          "Disabled",
-          "1 minute",
-          "5 minutes",
-          "15 minutes",
-          "25 minutes",
-          "35 minutes",
-          "45 minutes",
-          "55 minutes",
-          "1 hour",
-          "1 hour and 20 minutes",
-          "1 hour and 40 minutes",
-          "2 hours"
-        ],
-    "default": "Disabled"
-    },
-    {
-        "id": "HUE_ONLY_ON_3",
-        "label": "Only trigger lights that are on when the movie starts in room 3",
-        "type": "bool",
-        "default": "false"
-    },
-    {
-        "id": "PLEX_ON_3",
-        "label": "When the client is turned ON in room 3:",
-        "type": "enum",
-        "values": [
-          "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
-          "Preset 1",
-          "Preset 2",
-          "Preset 3",
-          "Preset 4",
-          "Preset 5"
-        ],
-    "default": "Nothing"
-    },
-    {
-        "id": "PLEX_TRANSITION_ON_3",
-        "label": "Transition time the client is turned ON in room 3:",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "PLEX_OFF_3",
-        "label": "When the client is turned OFF in room 3:",
-        "type": "enum",
-        "values": [
-          "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
-          "Preset 1",
-          "Preset 2",
-          "Preset 3",
-          "Preset 4",
-          "Preset 5"
-        ],
-    "default": "Nothing"
-    },
-    {
-        "id": "PLEX_TRANSITION_OFF_3",
-        "label": "Transition time the client is turned OFF in room 3:",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_ROOM_4",
-        "label": "Activate HelloHue in room 4",
-        "type": "bool",
-        "default": "false"
-    },
-    {
-        "id": "PLEX_CLIENT_4",
-        "label": "Name of the plex client in room 4 (one value, case sensitive)",
+        "id": "HYPERION_PRESET_3_HEX",
+        "label": "Preset 3, color (hex): #",
         "type": "text",
-        "default": "client4"
+        "default": "FF0000"
     },
     {
-        "id": "PLEX_AUTHORIZED_USERS_4",
-        "label": "Names of the users able to trigger in room 4 (comma separated, case sensitive)",
-        "type": "text",
-        "default": "username1"
-    },
-    {
-        "id": "HUE_LIGHTS_4",
-        "label": "Name of the lights to trigger in room 4 (comma separated, case sensitive)",
-        "type": "text",
-        "default": "Light 1, Light 2"
-    },
-    {
-        "id": "HUE_GROUPS_4",
-        "label": "Name of the groups to trigger in room 4 (comma separated, case sensitive)",
-        "type": "text",
-        "default": "Group 1, Group 2"
-    },
-    {
-        "id": "HUE_ACTION_PLAYING_4",
-        "label": "When a media is playing in room 4:",
-        "type": "enum",
-        "values": [
-          "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
-          "Preset 1",
-          "Preset 2",
-          "Preset 3",
-          "Preset 4",
-          "Preset 5"
-        ],
-    "default": "Turn Off"
-    },
-    {
-        "id": "HUE_ACTION_PAUSED_4",
-        "label": "When a media is paused in room 4:",
-        "type": "enum",
-        "values": [
-          "Reset",
-          "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
-          "Preset 1",
-          "Preset 2",
-          "Preset 3",
-          "Preset 4",
-          "Preset 5"
-        ],
-    "default": "Dim"
-    },
-    {
-        "id": "HUE_ACTION_STOPPED_4",
-        "label": "When a media is stopped in room 4:",
-        "type": "enum",
-        "values": [
-          "Reset",
-          "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
-          "Preset 1",
-          "Preset 2",
-          "Preset 3",
-          "Preset 4",
-          "Preset 5"
-        ],
-    "default": "Nothing"
-    },
-    {
-        "id": "HUE_DIM_4",
-        "label": "Choose dim value in room 4:",
+        "id": "HYPERION_PRESET_3_BRI",
+        "label": "Preset 3, brightness:",
         "type": "enum",
         "values": [
           "0",
+          "10",
           "20",
+          "30",
           "40",
+          "50",
           "60",
+          "70",
           "80",
-          "100",
-          "120",
-          "140",
-          "160",
-          "180",
-          "200",
-          "220",
-          "240",
-          "255"
+          "90",
+          "100"
         ],
-    "default": "20"
+    "default": "100"
     },
     {
-        "id": "HUE_TRANSITION_START_4",
-        "label": "Transition time when playback starts in room 4",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_TRANSITION_PAUSED_4",
-        "label": "Transition time when playback pauses in room 4",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_TRANSITION_RESUMED_4",
-        "label": "Transition time when playback resumes in room 4",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_TRANSITION_STOPPED_4",
-        "label": "Transition time when playback stops in room 4",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_RANDOMIZE_4",
-        "label": "Randomize hue and saturation on Dim/Turn On in room 4",
-        "type": "bool",
-        "default": "true"
-    },
-    {
-        "id": "HUE_DARK_4",
-        "label": "Only trigger lights if it's dark outside in room 4",
-        "type": "bool",
-        "default": "false"
-    },
-    {
-        "id": "PLEX_DURATION_4",
-        "label": "Only trigger lights in room 4 if currently playing media duration is greater than:",
-        "type": "enum",
-        "values": [
-          "Disabled",
-          "1 minute",
-          "5 minutes",
-          "15 minutes",
-          "25 minutes",
-          "35 minutes",
-          "45 minutes",
-          "55 minutes",
-          "1 hour",
-          "1 hour and 20 minutes",
-          "1 hour and 40 minutes",
-          "2 hours"
-        ],
-    "default": "Disabled"
-    },
-    {
-        "id": "HUE_ONLY_ON_4",
-        "label": "Only trigger lights that are on when the movie starts in room 4",
-        "type": "bool",
-        "default": "false"
-    },
-    {
-        "id": "PLEX_ON_4",
-        "label": "When the client is turned ON in room 4:",
-        "type": "enum",
-        "values": [
-          "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
-          "Preset 1",
-          "Preset 2",
-          "Preset 3",
-          "Preset 4",
-          "Preset 5"
-        ],
-    "default": "Nothing"
-    },
-    {
-        "id": "PLEX_TRANSITION_ON_4",
-        "label": "Transition time the client is turned ON in room 4:",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "PLEX_OFF_4",
-        "label": "When the client is turned OFF in room 4:",
-        "type": "enum",
-        "values": [
-          "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
-          "Preset 1",
-          "Preset 2",
-          "Preset 3",
-          "Preset 4",
-          "Preset 5"
-        ],
-    "default": "Nothing"
-    },
-    {
-        "id": "PLEX_TRANSITION_OFF_4",
-        "label": "Transition time the client is turned OFF in room 4:",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_ROOM_5",
-        "label": "Activate HelloHue in room 5",
-        "type": "bool",
-        "default": "false"
-    },
-    {
-        "id": "PLEX_CLIENT_5",
-        "label": "Name of the plex client in room 5 (one value, case sensitive)",
+        "id": "HYPERION_PRESET_4_HEX",
+        "label": "Preset 4, color (hex): #",
         "type": "text",
-        "default": "client5"
+        "default": "FF0000"
     },
     {
-        "id": "PLEX_AUTHORIZED_USERS_5",
-        "label": "Names of the users able to trigger in room 5 (comma separated, case sensitive)",
-        "type": "text",
-        "default": "username1"
-    },
-    {
-        "id": "HUE_LIGHTS_5",
-        "label": "Name of the lights to trigger in room 5 (comma separated, case sensitive)",
-        "type": "text",
-        "default": "Light 1, Light 2"
-    },
-    {
-        "id": "HUE_GROUPS_5",
-        "label": "Name of the groups to trigger in room 5 (comma separated, case sensitive)",
-        "type": "text",
-        "default": "Group 1, Group 2"
-    },
-    {
-        "id": "HUE_ACTION_PLAYING_5",
-        "label": "When a media is playing in room 5:",
-        "type": "enum",
-        "values": [
-          "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
-          "Preset 1",
-          "Preset 2",
-          "Preset 3",
-          "Preset 4",
-          "Preset 5"
-        ],
-    "default": "Turn Off"
-    },
-    {
-        "id": "HUE_ACTION_PAUSED_5",
-        "label": "When a media is paused in room 5:",
-        "type": "enum",
-        "values": [
-          "Reset",
-          "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
-          "Preset 1",
-          "Preset 2",
-          "Preset 3",
-          "Preset 4",
-          "Preset 5"
-        ],
-    "default": "Dim"
-    },
-    {
-        "id": "HUE_ACTION_STOPPED_5",
-        "label": "When a media is stopped in room 5:",
-        "type": "enum",
-        "values": [
-          "Reset",
-          "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
-          "Preset 1",
-          "Preset 2",
-          "Preset 3",
-          "Preset 4",
-          "Preset 5"
-        ],
-    "default": "Nothing"
-    },
-    {
-        "id": "HUE_DIM_5",
-        "label": "Choose dim value in room 5:",
+        "id": "HYPERION_PRESET_4_BRI",
+        "label": "Preset 4, brightness:",
         "type": "enum",
         "values": [
           "0",
+          "10",
           "20",
+          "30",
           "40",
+          "50",
           "60",
+          "70",
           "80",
-          "100",
-          "120",
-          "140",
-          "160",
-          "180",
-          "200",
-          "220",
-          "240",
-          "255"
+          "90",
+          "100"
         ],
-    "default": "20"
+    "default": "100"
     },
     {
-        "id": "HUE_TRANSITION_START_5",
-        "label": "Transition time when playback starts in room 5",
+        "id": "HYPERION_PRESET_5_HEX",
+        "label": "Preset 5, color (hex): #",
+        "type": "text",
+        "default": "FF0000"
+    },
+    {
+        "id": "HYPERION_PRESET_5_BRI",
+        "label": "Preset 5, brightness:",
         "type": "enum",
         "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
+          "0",
+          "10",
+          "20",
+          "30",
+          "40",
+          "50",
+          "60",
+          "70",
+          "80",
+          "90",
+          "100"
         ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_TRANSITION_PAUSED_5",
-        "label": "Transition time when playback pauses in room 5",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_TRANSITION_RESUMED_5",
-        "label": "Transition time when playback resumes in room 5",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_TRANSITION_STOPPED_5",
-        "label": "Transition time when playback stops in room 5",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "HUE_RANDOMIZE_5",
-        "label": "Randomize hue and saturation on Dim/Turn On in room 5",
-        "type": "bool",
-        "default": "true"
-    },
-    {
-        "id": "HUE_DARK_5",
-        "label": "Only trigger lights if it's dark outside in room 5",
-        "type": "bool",
-        "default": "false"
-    },
-    {
-        "id": "PLEX_DURATION_5",
-        "label": "Only trigger lights in room 5 if currently playing media duration is greater than:",
-        "type": "enum",
-        "values": [
-          "Disabled",
-          "1 minute",
-          "5 minutes",
-          "15 minutes",
-          "25 minutes",
-          "35 minutes",
-          "45 minutes",
-          "55 minutes",
-          "1 hour",
-          "1 hour and 20 minutes",
-          "1 hour and 40 minutes",
-          "2 hours"
-        ],
-    "default": "Disabled"
-    },
-    {
-        "id": "HUE_ONLY_ON_5",
-        "label": "Only trigger lights that are on when the movie starts in room 5",
-        "type": "bool",
-        "default": "false"
-    },
-    {
-        "id": "PLEX_ON_5",
-        "label": "When the client is turned ON in room 5:",
-        "type": "enum",
-        "values": [
-          "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
-          "Preset 1",
-          "Preset 2",
-          "Preset 3",
-          "Preset 4",
-          "Preset 5"
-        ],
-    "default": "Nothing"
-    },
-    {
-        "id": "PLEX_TRANSITION_ON_5",
-        "label": "Transition time the client is turned ON in room 5:",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
-    },
-    {
-        "id": "PLEX_OFF_5",
-        "label": "When the client is turned OFF in room 5:",
-        "type": "enum",
-        "values": [
-          "Nothing",
-          "Dim",
-          "Turn Off",
-          "Turn On",
-          "Preset 1",
-          "Preset 2",
-          "Preset 3",
-          "Preset 4",
-          "Preset 5"
-        ],
-    "default": "Nothing"
-    },
-    {
-        "id": "PLEX_TRANSITION_OFF_5",
-        "label": "Transition time the client is turned OFF in room 5:",
-        "type": "enum",
-        "values": [
-          "0 ms",
-          "400 ms",
-          "1 sec",
-          "2 secs",
-          "3 secs",
-          "5 secs",
-          "10 secs",
-          "15 secs",
-          "30 secs",
-          "45 secs",
-          "1 min",
-          "2 mins",
-          "5 mins"
-        ],
-    "default": "400 ms"
+    "default": "100"
     }
 ]
 

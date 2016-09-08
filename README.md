@@ -1,10 +1,10 @@
-HelloHue for Plex and Philips Hue
+HelloHyperion for Plex and HyperionWeb
 =================
 
-##### Sync and control your Philips Hue lights with Plex!
+##### Automatically turn on a Hyperion led strip with Plex!
 
 **Credits**
-This Channel is based on PlexWink by vanstinator.
+This channel is based on HelloHyperion by ledge74.
 
 ### Behavior
 
@@ -14,64 +14,44 @@ You can also turn your lights on and off inside the channel.
 ### Configuration
 
 The config is pretty simple and only needs to be done once. Configure your settings following the details below.
-One room is composed of **one client**, **one or multiple users** and **one or multiple lights**, as well as the actions : on play, on stop, on pause, dim value, and only trigger if it's dark outside.
+The plugin watches over **one client**, **one or multiple users** and **one led strip** that is connected to HyperionWeb, as well as the actions: on play, on stop, on pause, dim value, and only trigger if it's dark outside.
 
+* ```Activate HelloHyperion``` Untick to deactivate.
 * ```Plex.tv login``` is your Plex login.
 * ```Plex.tv passwords``` is your Plex password. It is only sent to plex.tv to get an identification token (so you must have a working internet access).
 * ```Plex Server Address``` is the local adress to reach your server.
-* ```Philips Hue Bridge Address``` is the ip address of your Philips Bridge.
-* ```Nearest city from your location``` Used to calculate to calculate sunrise/sunset hours at your location.
-* ```Preset 1, color (hex): #``` hexadecimal color value for lights preset 1 (don't write the #).
-* ```Preset 1, brightness:``` brightness value for lights preset 1.
-* ...
-* ```Activate HelloHue in room 1``` Tick to activate room 1 (and fill the client, users and lights settings for room 1).
-* ```Name of plex client able to trigger in room 1``` You can find the list of users in PMS -> settings -> devices. Only put ONE client per room. If your have two clients in the same room, activate an other room and fill the settings with the other clients name and the same lights names.
-* ```Name of the users able to trigger in room 1``` You can find the list of users in PMS -> settings -> users -> myhome. You can put multiple users (comma separated values, case sensitive).
-* ```Name of the lights to trigger in room 1``` is the list of lights that will be triggered in room 1. You can put multiple users (comma separated values, case sensitive).
-* ```When a media is playing in room 1``` is the action that will fire when a media is playing in room 1.
-* ```When a media is paused in room 1``` is the action that will fire when a media is paused in room 1.
-* ```When a media is stopped in room 1``` is the action that will fire when a media is stopped in room 1.
-* ```Choose dim value in room 1``` is the value your lights will dim to. (20 is the min brightness and 240 is max)
-* ```Randomize hue and saturation on Dim/Turn On in room 1``` will randomize your light color each time the action turn on or dim is fired.
-* ```Only trigger lights if it's dark outside in room 1``` Tick to only trigger your lights between sunrise and sunset.
-* ```Activate HelloHue in room 2``` Same thing as ```Activate HelloHue in room 1``` ...
+* ```HyperionWeb Address``` is the local address to reach the HyperionWeb server.
+* ```Nearest city from your location``` is used to calculate to calculate sunrise/sunset hours at your location.
+* ```Name of plex client able to trigger``` You can find the list of users in PMS -> settings -> devices. Only put ONE client!
+* ```Name of the users able to trigger``` You can find the list of users in PMS -> settings -> users -> myhome. You can put multiple users (comma separated values, case sensitive).
+* ```When a media is playing``` is the action that will fire when a media is playing.
+* ```When a media is paused``` is the action that will fire when a media is paused.
+* ```When a media is stopped``` is the action that will fire when a media is stopped.
+* ```Change value gain``` is the brightness which the led strip will use. (10 is the min brightness and 100 is max)
+* ```Randomize color and saturation on Value Gain/Turn On``` will randomize your led color each time the action turn on or value gain is fired.
+* ```Only trigger lights if it's dark outside``` Tick to only trigger your lights between sunrise and sunset.
+* ```Preset 1, color (hex): #``` hexadecimal color value for color preset 1 (don't write the #).
+* ```Preset 1, brightness:``` brightness value for the led strip.
 * ...
 
 ### Usage
 
 **How to install:**
-* go to ```Library/Application Support/Plex Media Server/Plug-ins/```
-* If existing, delete ```HelloHue.bundle```
-* get the release you want from *https://github.com/ledge74/HelloHue/releases*
-* unzip the release
-* restart your plex media server!!!
-* more indepth: see [article](https://support.plex.tv/hc/en-us/articles/201187656-How-do-I-manually-install-a-channel-) on Plex website. 
+* Go to ```lib/var/Plex/Plex Media Server/Plug-ins/```
+* If existing, delete ```HelloHyperion.bundle```
+* Run `git clone https://github.com/Nosskirneh/HelloHyperion.bundle
+* Unzip the release
+* Restart your Plex Media Server
+* More indepth: see [article](https://support.plex.tv/hc/en-us/articles/201187656-How-do-I-manually-install-a-channel-) on Plex website. 
 
 **On first run:**
 
-1. Configure your Channel preferences (see above for help, make sure that you are connected to the internet as the channel will request a token from plex.tv)
+1. Configure the channel's preferences (see above for help, make sure that you are connected to the internet as the channel will request a token from plex.tv)
 2. Go to the channel (on any device)
-3. If you see, ```Press button and your bridge and click to connect``` click on this menu AFTER having pressed the physical button of your bridge.
-4. The click on ```Advanced``` --> ```Restart HelloHue```
-5. If you see the menu ```My Lights``` then you are all good!
-6. Enjoy :)
+3. Enjoy :>
 
 **Use the channel:**
 
-* ```My Lights``` allows you to trigger your lights from the channel
-* ```Enable HelloHue``` disable the channel (stop listening to items being played)
-* ```Disable HelloHue``` resumes the channel (start listening to items being played)
-* ```Advanced``` --> ```Restart HelloHue`` takes into account your new Plex.TV login/password if you updated it in the channel settings.
-
-### How to report a bug and ask for features
-
-If you have a problem with this channel, raise an issue on GitHub or on the [Plex Forums](https://forums.plex.tv/discussion/193095/rel-hellohue-control-your-philips-hue-lights-via-plex). Don't forget to add a Log file of this channel : https://support.plex.tv/hc/en-us/articles/200250417-Plex-Media-Server-Log-Files
-
-### Support the project
-I've developed HelloHue on my free time, so if you like it please think about buying me a beer!
-
-[![](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif "")
-](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WZTWSG87P9G8E "https://paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WZTWSG87P9G8E")
-
-[![](https://15254b2dcaab7f5478ab-24461f391e20b7336331d5789078af53.ssl.cf1.rackcdn.com/plex.vanillacommunity.com/editor/w9/hhy6994k9ncb.png "")
-](https://www.changetip.com/tipme/ledge74 "https://www.changetip.com/tipme/ledge74")
+* ```Enable HelloHyperion``` disable the channel (stop listening to items being played)
+* ```Disable HelloHyperion``` resumes the channel (start listening to items being played)
+* ```Advanced``` --> ```Restart HelloHyperion`` takes into account your new Plex.TV login/password if you updated it in the channel settings.
