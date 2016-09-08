@@ -8,8 +8,7 @@ This channel is based on HelloHyperion by ledge74.
 
 ### Behavior
 
-This channel detects when a media is playing, paused or stopped on your Plex Clients. Then it checks if it's a video, the client name, and the user who owns the stream. If it matches your criteria it triggers your lights with the actions you have set up.
-You can also turn your lights on and off inside the channel.
+This channel detects when a media is playing, paused or stopped on your Plex Clients. Then it checks if it's a video, the client name, and the user who owns the stream. If it matches your criteria it triggers your led strip with the actions you have set up.
 
 ### Configuration
 
@@ -42,7 +41,7 @@ The plugin watches over **one client**, **one or multiple users** and **one led 
 * Install the [HyperionWeb](https://github.com/Nosskirneh/hyperionweb) server (a layer over the standard one to keep track of information)
 * Go to ```lib/var/Plex/Plex Media Server/Plug-ins/```
 * If existing, delete ```HelloHyperion.bundle```
-* Run `git clone https://github.com/Nosskirneh/HelloHyperion.bundle
+* Run `git clone https://github.com/Nosskirneh/HelloHyperion.bundle`
 * Unzip the release
 * Restart your Plex Media Server
 * More indepth: see [article](https://support.plex.tv/hc/en-us/articles/201187656-How-do-I-manually-install-a-channel-) on Plex website.
@@ -50,7 +49,9 @@ The plugin watches over **one client**, **one or multiple users** and **one led 
 **On first run:**
 
 1.&nbsp;Configure the channel's preferences (see above for help, make sure that you are connected to the internet as the channel will request a token from plex.tv)
+
 2.&nbsp;Go to the channel (on any device)
+
 3.&nbsp;Enjoy :>
 
 **Use the channel:**
