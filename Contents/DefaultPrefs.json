@@ -131,6 +131,18 @@
     "default": "20"
     },
     {
+        "id": "HYPERION_BRI_ON_CLEAR",
+        "label": "Do also change brightness when media is played",
+        "type": "bool",
+        "default":"true"
+    },
+    {
+        "id": "HYPERION_BRI_ON_BLACK",
+        "label": "Revert back brightness after media has stopped",
+        "type": "bool",
+        "default":"true"
+    },
+    {
         "id": "HYPERION_RANDOMIZE",
         "label": "Randomize color and saturation on Value Gain/Turn On",
         "type": "bool",
@@ -138,7 +150,7 @@
     },
     {
         "id": "HYPERION_DARK",
-        "label": "Only trigger lights if it's dark outside",
+        "label": "Only trigger if it's dark outside",
         "type": "bool",
         "default": "false"
     },
