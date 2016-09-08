@@ -210,9 +210,8 @@ def GetSetting():
 		setting['min_duration'] = Prefs['PLEX_DURATION']
 		setting['turned_on'] = Prefs['PLEX_ON']
 		setting['turned_off'] = Prefs['PLEX_OFF']
-		Log("setting: %s", setting)
+		#Log("settings: %s", setting)
 		Log("Room check done")
-		Log(setting)
 		return setting
 	else:
 		Log("Skipping setting")
