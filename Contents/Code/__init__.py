@@ -222,11 +222,18 @@ def GetSetting():
 
 def InitiateDurations():
 	Log("Initiating durations")
-	global DURATIONS
+	global CURRENT_STATUS, DURATIONS
 
-	#CURRENT_STATUS = {}
+	client_name = GetSetting()['client']
+
+	CURRENT_STATUS = {}
 	DURATIONS = {}
-	DURATIONS[GetSetting()['client']] = ''
+
+	CURRENT_STATUS[client_name] = ''
+	DURATIONS[client_name] = ''
+
+	Log(CURRENT_STATUS)
+	Log(DURATIONS)
 
 ####################################################################################################
 # If websocket detected, trigger PMS sessions status analyze
@@ -242,9 +249,11 @@ def run_websocket_watcher():
 
 def on_message(ws, message):
 	json_object = json.loads(message)
-	#Log(json_object)
+	######
+	Log(json_object)
 	if json_object['type'] == 'playing':
 		plex_status = plex.get_plex_status()
+		Log(plex_status)
 		is_plex_playing(plex_status)
 
 def on_close(ws):
@@ -257,7 +266,7 @@ def on_close(ws):
 def get_playing_item_duration(video):
 	Log("getting duration")
 	duration = int(video.get('duration'))
-	DURATIONS[client_name] = duration
+	DURATIONS[GetSetting()['client']] = duration
 	return duration
 
 ####################################################################################################
@@ -329,10 +338,11 @@ def is_plex_playing(plex_status):
 				CURRENT_STATUS[client_name] = ''
 				Log(time.strftime("%I:%M:%S") + " - Playback stopped on %s - Waiting for new playback" % (client_name));
 				if isitdark() is True and compare_duration(duration=DURATIONS[client_name], pref=GetSetting()['min_duration']) is True:
-					choose_action("stopped", client_name)
+					choose_action("stopped")
 					DURATIONS[client_name] = ''
 
 def plex_is_playing(client_name, user, gptitle, title, state, item):
+	client_name = GetSetting()['client']
 	if CURRENT_STATUS[client_name] == '':
 		#Log(time.strftime("%I:%M:%S") + " - New Playback (saving initial lights state): - %s %s %s - %s on %s."% (user, CURRENT_STATUS[client_name], gptitle, title, client_name))
 		Log("Success?")
@@ -347,13 +357,13 @@ def plex_is_playing(client_name, user, gptitle, title, state, item):
 
 def choose_action(state):
 	Log("Selecting LED action...")
-	if GetSetting()[state] == "Turn Off":
+	if GetSetting()[state] == "Turn Off (Black)":
 		turn_off_led()
 		pass
 	elif GetSetting()[state] == "Turn On (Clear)":
 		clear_led()
 		pass
-	elif GetSetting()[state] == "Dim":
+	elif GetSetting()[state] == "Brightness":
 		bri_led()
 		pass
 	elif GetSetting()[state] == "Start Hyperion service":
@@ -446,7 +456,7 @@ def set_color_preset(preset):
 	Log("Setting color to preset %s "%preset)
 	try:
 		rgb = (hex_to_rgb(str(Prefs['HYPERION_PRESET_%s_HEX'%preset])))
-		Log(rgb)
+		#Log(rgb)
 	except:
 		Log("Wrong hex color, doing nothing")
 	else:
@@ -454,10 +464,9 @@ def set_color_preset(preset):
 			rgb = []
 			for i in range(3):
 				rgb.append(random.randint(0,255))
-			r = requests.post(getSSL() + Prefs['HYPERION_ADDRESS'] + "/set_static", data={'r':rgb[0], 'g':rgb[1], 'b':rgb[2]})
-		else:
-			r = requests.post(getSSL() + Prefs['HYPERION_ADDRESS'] + "/set_static", data={'r':rgb[0], 'g':rgb[1], 'b':rgb[2]})
-			r = requests.post(getSSL() + Prefs['HYPERION_ADDRESS'] + "/set_value_gain", data={'valueGain':str(Prefs['HYPERION_PRESET_%s_BRI'%preset])})
+		
+		r = requests.post(getSSL() + Prefs['HYPERION_ADDRESS'] + "/set_static", data={'r':rgb[0], 'g':rgb[1], 'b':rgb[2]})
+		r = requests.post(getSSL() + Prefs['HYPERION_ADDRESS'] + "/set_value_gain", data={'valueGain':str(Prefs['HYPERION_PRESET_%s_BRI'%preset])})
 		Log("Changed color")
 	pass
 
@@ -478,7 +487,7 @@ def restart_hyperion():
 
 def turn_off_led():
 	Log("Turning off led (sending black)")
-	r = requests.post(getSSL() + Prefs['HYPERION_ADDRESS'] + "/set_static_name", data={'colorName':'black'})
+	r = requests.post(getSSL() + Prefs['HYPERION_ADDRESS'] + "/set_color_name", data={'colorName':'black'})
 	pass
 
 def clear_led():
@@ -502,21 +511,20 @@ def watch_clients():
 			now_active.append(item.get('name'))
 			if firstrun is True:
 				active_clients.append(item.get('name'))
-		#Log("now_active: %s"%now_active)
-		#Log("active_clients: %s"%active_clients)
-		#Log("firstrun: %s"%firstrun)
+		Log("now_active: %s"%now_active)
+		Log("active_clients: %s"%active_clients)
+		Log("firstrun: %s"%firstrun)
 		if firstrun is False:
 			for client in now_active:
 				if not client in active_clients:
-					Log(GetSetting()['client'])
-					Log("%s detected, doing something"%client)
-					choose_action("turned_on", client)
+					Log("%s detected, running assigment for turned on"%client)
+					choose_action("turned_on")
 					active_clients.append(client)
 			for client in active_clients:
 				if not client in now_active:
-					Log(ReturnFromClient(client))
-					Log("%s went away, doing something"%client)
-					choose_action("turned_off", client)
+					Log(GetSetting()[client])
+					Log("%s went away, running event for turned off"%client)
+					choose_action("turned_off")
 					active_clients.remove(client)
 		if firstrun is True:
 			Log("Setting firstrun to False")
