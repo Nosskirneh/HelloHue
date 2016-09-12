@@ -207,7 +207,7 @@ def GetSetting():
 		setting['stopped'] = Prefs['HYPERION_ACTION_STOPPED']
 		setting['brightness'] = Prefs['HYPERION_BRI']
 		setting['bri_on_clear'] = Prefs['HYPERION_BRI_ON_CLEAR']
-		setting['bri_on_black'] = Prefs['HYPERION_BRI_ON_BLACK']
+		setting['revert_on_black'] = Prefs['HYPERION_REVERT_ON_BLACK']
 		setting['randomize'] = Prefs['HYPERION_RANDOMIZE']
 		setting['dark'] = Prefs['HYPERION_DARK']
 		setting['min_duration'] = Prefs['PLEX_DURATION']
@@ -360,12 +360,15 @@ def choose_action(state):
 	Log("Selecting LED action...")
 	if GetSetting()[state] == "Turn Off (Black)":
 		turn_off_led()
+		randomize()
+		revert_bri()
 		pass
 	elif GetSetting()[state] == "Turn On (Clear)":
 		clear_led()
 		pass
 	elif GetSetting()[state] == "Brightness":
 		bri_led()
+		randomize()
 		pass
 	elif GetSetting()[state] == "Start Hyperion service":
 		start_hyperion()
@@ -468,22 +471,51 @@ def getValueGain():
 # Execute led actions
 ####################################################################################################
 
+def revert_bri():
+	global INIT_VAL, VAL_DID_CHANGE
+	Log("INIT_VAL: %s"%INIT_VAL)
+	if GetSetting()['revert_on_black'] and VAL_DID_CHANGE is True:
+		bri_led(INIT_VAL)
+		VAL_DID_CHANGE = False
+	pass
+
+def randomize():
+	if GetSetting()['randomize'] is True:
+		rgb = []
+		for i in range(3):
+			rgb.append(random.randint(0,255))
+	
+		r = requests.post(getSSL() + Prefs['HYPERION_ADDRESS'] + "/set_static", data={'r':rgb[0], 'g':rgb[1], 'b':rgb[2]})
+		Log("Changed color")
+	pass
+
 def set_color_preset(preset):
 	Log("Setting color to preset %s "%preset)
 	try:
 		rgb = (hex_to_rgb(str(Prefs['HYPERION_PRESET_%s_HEX'%preset])))
-		#Log(rgb)
 	except:
 		Log("Wrong hex color, doing nothing")
-	else:
-		if GetSetting()['randomize'] is True:
-			rgb = []
-			for i in range(3):
-				rgb.append(random.randint(0,255))
-		
-		r = requests.post(getSSL() + Prefs['HYPERION_ADDRESS'] + "/set_static", data={'r':rgb[0], 'g':rgb[1], 'b':rgb[2]})
-		r = requests.post(getSSL() + Prefs['HYPERION_ADDRESS'] + "/set_value_gain", data={'valueGain':str(Prefs['HYPERION_PRESET_%s_BRI'%preset])})
-		Log("Changed color")
+	pass
+
+def turn_off_led():
+	if GetSetting()['randomize'] is False:
+		Log("Turning off led (sending black)")
+		r = requests.post(getSSL() + Prefs['HYPERION_ADDRESS'] + "/set_color_name", data={'colorName':'black'})
+	pass
+
+def clear_led():
+	global VAL_DID_CHANGE
+	getValueGain()
+	Log("Clearing all priority channels")
+	r = requests.post(getSSL() + Prefs['HYPERION_ADDRESS'] + "/do_clear", data={'clear':'clear'})
+	if GetSetting()['bri_on_clear'] is True:
+		bri_led(GetSetting()['brightness'])
+		VAL_DID_CHANGE = True
+	pass
+
+def bri_led(bri_value):
+	global INIT_VAL, VAL_DID_CHANGE
+	r = requests.post(getSSL() + Prefs['HYPERION_ADDRESS'] + "/set_value_gain", data={'valueGain':bri_value})
 	pass
 
 def start_hyperion():
@@ -499,35 +531,6 @@ def stop_hyperion():
 def restart_hyperion():
 	Log("Restarting hyperion service")
 	r = requests.post(getSSL() + Prefs['HYPERION_ADDRESS'] + "/do_restart", data={'restart':'restart'})
-	pass
-
-def turn_off_led():
-	global INIT_VAL, VAL_DID_CHANGE
-	Log("Turning off led (sending black)")
-	r = requests.post(getSSL() + Prefs['HYPERION_ADDRESS'] + "/set_color_name", data={'colorName':'black'})
-	#Log("1: INIT_VAL: %s, VAL_DID_CHANGE: %s" %(INIT_VAL, VAL_DID_CHANGE))
-	if VAL_DID_CHANGE is True:
-		bri_led(INIT_VAL)
-		VAL_DID_CHANGE = False
-	pass
-
-def clear_led():
-	global VAL_DID_CHANGE
-	getValueGain()
-	Log("Clearing all priority channels")
-	r = requests.post(getSSL() + Prefs['HYPERION_ADDRESS'] + "/do_clear", data={'clear':'clear'})
-	if GetSetting()['bri_on_clear'] is True:
-		bri_led(GetSetting()['brightness'])
-		VAL_DID_CHANGE = True
-	pass
-
-def bri_led(bri_value):
-	global INIT_VAL, VAL_DID_CHANGE
-	#Log("2: bri_value: %s" %(bri_value))
-	r = requests.post(getSSL() + Prefs['HYPERION_ADDRESS'] + "/set_value_gain", data={'valueGain':bri_value})
-	if bri_value is INIT_VAL and VAL_DID_CHANGE is True: #Reverting
-		VAL_DID_CHANGE = False
-		Log("Reverting value gain")
 	pass
 
 def watch_clients():

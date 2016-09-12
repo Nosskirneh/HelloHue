@@ -137,14 +137,14 @@
         "default":"true"
     },
     {
-        "id": "HYPERION_BRI_ON_BLACK",
+        "id": "HYPERION_REVERT_ON_BLACK",
         "label": "Revert back brightness with Turn Off (Black)",
         "type": "bool",
         "default":"true"
     },
     {
         "id": "HYPERION_RANDOMIZE",
-        "label": "Randomize color and saturation on Brightness/Turn On",
+        "label": "Randomize color on Brightness/Turn Off (Black)",
         "type": "bool",
         "default": "false"
     },
