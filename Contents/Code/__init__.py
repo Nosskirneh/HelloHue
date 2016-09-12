@@ -213,8 +213,6 @@ def GetSetting():
 		setting['min_duration'] = Prefs['PLEX_DURATION']
 		setting['turned_on'] = Prefs['PLEX_ON']
 		setting['turned_off'] = Prefs['PLEX_OFF']
-		#Log("settings: %s", setting)
-		#Log("Room check done")
 		return setting
 	else:
 		Log("Skipping setting")
@@ -436,8 +434,6 @@ def isitdark():
 
 def hex_to_rgb(value):
 	lv = len(value)
-	#Log(value)
-	#Log(lv)
 	return tuple(int(value[i:i+lv/3], 16) for i in range(0, lv, lv/3))
 
 
@@ -457,12 +453,10 @@ def getSSL():
 
 def getValueGain():
 	global INIT_VAL, VAL_DID_CHANGE
-
 	try:
 		VAL_DID_CHANGE = False
 		r = requests.get(getSSL() + Prefs['HYPERION_ADDRESS'] + "/get_value_gain")
 		INIT_VAL = int(float(r.json()['valueGain']))
-		#Log("INIT_VAL: %s"%INIT_VAL)
 	except:
 		Log("Could not fetch ValueGain data from HyperionWeb. Is server online?")
 
@@ -473,7 +467,6 @@ def getValueGain():
 
 def revert_bri():
 	global INIT_VAL, VAL_DID_CHANGE
-	Log("INIT_VAL: %s"%INIT_VAL)
 	if GetSetting()['revert_on_black'] and VAL_DID_CHANGE is True:
 		bri_led(INIT_VAL)
 		VAL_DID_CHANGE = False
