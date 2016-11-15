@@ -3,9 +3,6 @@ HelloHyperion for Plex and HyperionWeb
 
 ##### Automatically turn on and off a Hyperion LED strip with Plex!
 
-**Credits**
-This channel is based on HelloHyperion by ledge74.
-
 ### Behavior
 
 This channel detects when a media is playing, paused or stopped on your Plex Clients. Then it checks if it's a video, the client name, and the user who owns the stream. If it matches your criteria it triggers your led strip with the actions you have set up. It could for example automatically turn on the LED strip when a movie starts and then afterwards restore to previous state.
@@ -60,4 +57,8 @@ The plugin watches over **one client**, **one or multiple users** and **one led 
 
 * ```Enable HelloHyperion``` resumes the channel (start listening to items being played)
 * ```Disable HelloHyperion``` disable the channel (stop listening to items being played)
-* ```Advanced``` --> ```Restart HelloHyperion`` takes into account your new Plex.TV login/password if you updated it in the channel settings.
+* ```Advanced``` --> ``Restart HelloHyperion`` takes into account your new Plex.TV login/password if you updated it in the channel settings.
+
+### Credits
+
+This channel is based on [HelloHue](https://github.com/ledge74/HelloHue) by ledge74.
