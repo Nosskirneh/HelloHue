@@ -236,7 +236,7 @@ def InitiateStatus():
 	DURATIONS[client_name] = ''
 
 ####################################################################################################
-# If websocket detected, trigger PMS sessions status analyze
+# Listen to Plex Media Server websocket
 ####################################################################################################
 
 def run_websocket_watcher():
@@ -247,13 +247,33 @@ def run_websocket_watcher():
 	Log("Up and running, listening")
 	ws.run_forever()
 
+####################################################################################################
+# If websocket detected, trigger PMS sessions status analyze
+####################################################################################################
+
 def on_message(ws, message):
 	json_object = json.loads(message)
+	Log("WS: got new ws notif")
 	#Log(json_object)
-	if json_object['type'] == 'playing':
-		plex_status = plex.get_plex_status()
-		#Log(plex_status)
-		is_plex_playing(plex_status)
+	try: # New PMS version
+		if json_object['NotificationContainer']['type'] == 'playing':
+			update_plex_status()
+	except: # Old PMS version
+		try:
+			if json_object['type'] == 'playing':
+				update_plex_status()
+		except:
+			Log("Could not analyze current state info!")
+			pass
+
+def update_plex_status():
+	Log("WS: notification type is playing, passing to is_plex_playing")
+	plex_status = plex.get_plex_status()
+	Log("WS: Current plex status ...")
+	for item in plex_status.findall('Video'):
+		for player in item.iter('Player'):
+			Log(player.attrib)
+	is_plex_playing(plex_status)
 
 def on_close(ws):
 	Log("### closed ###")
@@ -328,6 +348,8 @@ def is_plex_playing(plex_status):
 					elif item.find('Player').get('state') == 'paused' and CURRENT_STATUS[client_name] != item.find('Player').get('state') and compare_duration(duration=get_playing_item_duration(item), pref=min_duration) is True:
 						plex_is_playing(client_name=client_name, user=item.find('User').get('title'), gptitle=item.get('grandparentTitle'), title=item.get('title'), state=item.find('Player').get('state'), item=item)
 						somethingwasdone = True
+		else:
+			Log("client is not configured in channel settings, not doing anything.")
 	
 	if somethingwasdone is True:
 		return False
